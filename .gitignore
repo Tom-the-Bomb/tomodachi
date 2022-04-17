@@ -1,0 +1,4 @@
+tomodachi/frontend/node_modules/
+tomodachi/frontend/src/target/
+poetry.lock
+__pycache__/
