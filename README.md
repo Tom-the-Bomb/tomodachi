@@ -1,6 +1,4 @@
-<p align="center">
-  <a><img width="420px" src="https://raw.githubusercontent.com/justanotherbyte/tomodachi/main/.github/cover.png" alt='tomodachi'></a>
-</p>
+![tomodachi](https://raw.githubusercontent.com/justanotherbyte/tomodachi/main/.github/cover.png)
 
 # Tomodachi
 
