@@ -10,9 +10,8 @@ from starlette.routing import Mount, Route
 
 class TomodachiApp(Starlette):
     tpl = Jinja2Templates('../frontend/tps/')
-    pass
 
-routes = [
+routes: list[Mount] = [
     Mount('/static', app=StaticFiles(directory='../frontend/static/')) # load static files
 ]
 
@@ -23,15 +22,10 @@ for filename in os.listdir('../backend/routes'):
 
     module = import_module(f'routes.{filename[:-3]}')
 
-    for (_, value) in getmembers(module):
-        try:
-            is_route = getattr(value, '__is_route__')
-            if is_route is True:
-                print('is route')
-                route_path = getattr(value, '__route_path__')
-                routes.append(Route(route_path, value)) # type: ignore
-        except AttributeError:
-            continue
+    for _, value in getmembers(module):
+        if getattr(value, '__is_route__', None):
+            print('is route')
+            routes.append(Route(value.__route_path__, value)) # type: ignore
 
-
+                
 app = TomodachiApp(routes=routes)
